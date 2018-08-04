@@ -19,7 +19,7 @@ public class CategoriesAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 11;
+        return mCategories.length;
 
     }
 
@@ -41,7 +41,7 @@ public class CategoriesAdapter extends BaseAdapter {
             final LayoutInflater layoutInflater = LayoutInflater.from(mContext);
             view = layoutInflater.inflate(R.layout.category_item, null);
         }
-        final ImageView imageView = (ImageView)view.findViewById(R.id.categoryIV);
+        final ImageView imageView = view.findViewById(R.id.categoryIV);
         imageView.setImageResource(category.getImgResId());
 
         return view;    }

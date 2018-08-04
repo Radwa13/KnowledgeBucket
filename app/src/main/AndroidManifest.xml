@@ -11,10 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
 
         <service
             android:name=".FactsJob"
@@ -35,15 +31,26 @@
                 android:resource="@xml/facts_app_widget_info" />
         </receiver>
 
-        <activity android:name=".FacebookShare" />
-
         <provider
             android:name="com.facebook.FacebookContentProvider"
             android:authorities="com.facebook.app.FacebookContentProvider498389497258929"
             android:exported="true" />
 
-        <activity android:name=".Welcome" />
-        <activity android:name=".SplashScreen">
+        <activity android:name=".Welcome" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="example.com"
+                    android:pathPrefix="/computers"
+                    android:scheme="http" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".SplashScreen" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -51,8 +58,18 @@
             </intent-filter>
         </activity>
         <activity android:name=".Categories" />
-        <activity android:name=".Questins_Activty" />
-        <activity android:name=".GameOver"></activity>
+        <activity android:name=".Questions_Activity" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+        <activity android:name=".GameOver"/>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

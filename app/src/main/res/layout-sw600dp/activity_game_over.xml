@@ -16,10 +16,9 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/fpnt_family"
         android:fontFeatureSettings="@string/appbar_scrolling_view_behavior"
         android:lineSpacingExtra="10sp"
-        android:text="Game Over"
+        android:text="@string/game_over"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@color/colorPrimary"
@@ -78,12 +77,8 @@
         style="@style/FontBoldTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginStart="24dp"
-
         android:layout_marginTop="32dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="@+id/score"
         app:layout_constraintTop_toBottomOf="@+id/new_high-score" />
 
     <TextView
@@ -91,12 +86,9 @@
         style="@style/FontBoldTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
 
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="@+id/high_score"
         app:layout_constraintTop_toBottomOf="@+id/genre" />
 
     <TextView
@@ -122,7 +114,6 @@
         android:layout_marginLeft="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:text="TextVIEW"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/score" />
 
@@ -136,6 +127,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/new_high_score"
+        android:visibility="gone"
         android:textColor="@color/colorAccent"
         android:textSize="30sp"
         android:textStyle="bold"

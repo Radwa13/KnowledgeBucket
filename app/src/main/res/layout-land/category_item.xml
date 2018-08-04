@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
 <ImageView
     android:id="@+id/categoryIV"
-    android:layout_width="130dp"
-    android:layout_height="130dp" />
+    android:contentDescription="@string/category"
+    android:layout_width="150dp"
+    android:layout_height="150dp" />
 </android.support.constraint.ConstraintLayout>

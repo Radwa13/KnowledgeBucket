@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pattern"
+    android:background="@drawable/pattern_h"
     tools:context=".GameOver">
 
     <TextView
@@ -77,7 +77,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="kkkkkkkkkkkkkkk"
         app:layout_constraintStart_toStartOf="@+id/score"
         app:layout_constraintTop_toBottomOf="@+id/new_high-score" />
 
@@ -86,9 +85,7 @@
         style="@style/FontBoldTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_marginTop="24dp"
-        android:text="kkkkkkkkkkkkkkk"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@+id/high_score"
         app:layout_constraintTop_toBottomOf="@+id/genre" />
 
@@ -111,11 +108,10 @@
         style="@style/FontBoldTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="kkkkkkkkkkkkkkk"
-
         android:layout_marginLeft="24dp"
+
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/score" />
 

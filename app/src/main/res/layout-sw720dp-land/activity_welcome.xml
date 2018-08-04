@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
 
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -10,10 +9,11 @@
     tools:context=".Welcome">
     <ImageView
         android:layout_width="600dp"
-        android:layout_height="800dp"
+        android:layout_height="600dp"
         android:id="@+id/idea"
         android:layout_centerHorizontal="true"
         android:paddingTop="30dp"
+        android:contentDescription="@string/idea_logo"
         android:src="@drawable/idea"/>
 <Button
     android:layout_width="350dp"

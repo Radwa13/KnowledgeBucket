@@ -5,18 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pattern"
-    tools:context=".Questins_Activty">
+    android:background="@drawable/pattern_h"
+    tools:context=".Questions_Activity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/heart2"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="8dp"
+            android:contentDescription="@string/attemps_key"
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
             app:layout_constraintStart_toEndOf="@+id/heart1"
@@ -28,6 +29,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="8dp"
+            android:contentDescription="@string/attemps_key"
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
             app:layout_constraintBottom_toBottomOf="@+id/heart2"
@@ -35,17 +37,17 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/heart" />
 
-        <Chronometer
+        <TextView
             android:id="@+id/timer"
             style="@style/FontBoldTheme"
             android:layout_width="200dp"
             android:layout_height="100dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="32dp"
             android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="@+id/question"
+            app:layout_constraintBottom_toTopOf="@+id/question"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,22 +56,22 @@
             style="@style/FontBoldTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginRight="16dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
-            app:layout_constraintEnd_toStartOf="@+id/timer"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/heart2" />
 
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="100dp"
-            android:layout_height="75dp"
+            android:layout_height="100dp"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="16dp"
             android:contentDescription="@string/answerA"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/question"
@@ -83,10 +85,10 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="32dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/answer"
             android:padding="20dp"
-            android:textSize="35sp"
+            style="@style/FontRegularTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toBottomOf="@+id/question" />
@@ -99,10 +101,10 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="32dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/answer"
             android:padding="20dp"
-            android:textSize="35sp"
+            style="@style/FontRegularTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView3"
             app:layout_constraintTop_toBottomOf="@+id/answerA" />
@@ -115,28 +117,26 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="32dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/answer"
             android:padding="20dp"
-            android:textSize="35sp"
+            style="@style/FontRegularTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView5"
             app:layout_constraintTop_toBottomOf="@+id/answerB" />
 
         <Button
             android:id="@+id/answerD"
+            style="@style/FontRegularTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="32dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/answer"
             android:padding="20dp"
-            android:textSize="35sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView4"
             app:layout_constraintTop_toBottomOf="@+id/answerC" />
@@ -144,7 +144,7 @@
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="100dp"
-            android:layout_height="75dp"
+            android:layout_height="100dp"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
@@ -157,7 +157,7 @@
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="100dp"
-            android:layout_height="75dp"
+            android:layout_height="100dp"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
@@ -170,7 +170,7 @@
         <ImageView
             android:id="@+id/imageView5"
             android:layout_width="100dp"
-            android:layout_height="75dp"
+            android:layout_height="100dp"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
@@ -199,7 +199,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
-            android:text="TextView"
             app:layout_constraintStart_toEndOf="@+id/textView3"
             app:layout_constraintTop_toTopOf="@+id/textView3" />
 
@@ -208,9 +207,30 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="16dp"
+            android:contentDescription="@string/attemps_key"
             android:layout_marginStart="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/heart2"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/heart" />
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/app_unit_id"
+            ads:layout_constraintBottom_toBottomOf="parent"
+            ads:layout_constraintEnd_toEndOf="parent"
+            ads:layout_constraintStart_toStartOf="parent"
+            ads:layout_constraintTop_toBottomOf="@+id/score">
+
+        </com.google.android.gms.ads.AdView>
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

@@ -13,7 +13,7 @@ class SharedPreferencesMethods {
 				.getDefaultSharedPreferences(context);
 		Editor editor = sharedPreferences.edit();
 		editor.putInt(key, value);
-		editor.commit();
+		editor.apply();
 	}
 
 	
@@ -30,7 +30,7 @@ class SharedPreferencesMethods {
 				.getDefaultSharedPreferences(context);
 		Editor editor = sharedPreferences.edit();
 		editor.putString(key, value);
-		editor.commit();
+		editor.apply();
 	}
 
 	
@@ -43,20 +43,5 @@ class SharedPreferencesMethods {
 	}
 
 
-
-	public static void savePreferencesFloat(Context context, String key, float value) {
-		SharedPreferences sharedPreferences = PreferenceManager
-				.getDefaultSharedPreferences(context);
-		Editor editor = sharedPreferences.edit();
-		editor.putFloat(key, value);
-		editor.commit();
-	}
-
-	public static float loadSavedPreferencesFloat(Context context, String key) {
-		SharedPreferences sharedPreferences = PreferenceManager
-				.getDefaultSharedPreferences(context);
-
-		return sharedPreferences.getFloat(key,0);
-	}
 	
 }

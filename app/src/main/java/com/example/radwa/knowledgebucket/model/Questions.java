@@ -8,7 +8,7 @@ import java.util.List;
 public class Questions implements Parcelable {
 
     private Integer responseCode;
-    private List<Result> results = null;
+    private List<Result> results;
 
     public Questions(Parcel in) {
 

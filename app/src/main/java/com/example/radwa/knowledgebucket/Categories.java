@@ -13,8 +13,10 @@ import android.widget.Toast;
 
 import com.example.radwa.knowledgebucket.model.Category;
 import com.example.radwa.knowledgebucket.model.NetWorkUtilities;
-import com.example.radwa.knowledgebucket.model.Questions;
 import com.example.radwa.knowledgebucket.model.Result;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.security.ProviderInstaller;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,8 +33,13 @@ import java.net.Socket;
 import java.net.SocketAddress;
 import java.net.URL;
 import java.net.URLConnection;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLEngine;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,24 +48,22 @@ public class Categories extends AppCompatActivity {
     @BindView(R.id.gridview)
     GridView gridView;
 
+    @SuppressWarnings("unused")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
         ButterKnife.bind(this);
-        final Category[] categories = new Category[11];
+        final Category[] categories = new Category[6];
+
         categories[0] = new Category(R.drawable.history, NetWorkUtilities.HISTORY_QUESTIONS);
         categories[1] = new Category(R.drawable.sports, NetWorkUtilities.SPORTS_QUESTIONS);
         categories[2] = new Category(R.drawable.general_knowldge, NetWorkUtilities.GENERAL_KNOWLDGE_QUESTIONS);
         categories[3] = new Category(R.drawable.art, NetWorkUtilities.ART_QUESTIONS);
         categories[4] = new Category(R.drawable.math, NetWorkUtilities.MATH_QUESTIONS);
         categories[5] = new Category(R.drawable.geography, NetWorkUtilities.GEOGRAPHY_QUESTIONS);
-        categories[6] = new Category(R.drawable.sports, NetWorkUtilities.SPORTS_QUESTIONS);
-        categories[7] = new Category(R.drawable.general_knowldge, NetWorkUtilities.GENERAL_KNOWLDGE_QUESTIONS);
-        categories[8] = new Category(R.drawable.art, NetWorkUtilities.ART_QUESTIONS);
-        categories[9] = new Category(R.drawable.math, NetWorkUtilities.MATH_QUESTIONS);
-        categories[10] = new Category(R.drawable.geography, NetWorkUtilities.GEOGRAPHY_QUESTIONS);
-        CategoriesAdapter categoriesAdapter = new CategoriesAdapter(this, categories);
+      CategoriesAdapter categoriesAdapter = new CategoriesAdapter(this, categories);
+
         gridView.setAdapter(categoriesAdapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -68,20 +73,41 @@ public class Categories extends AppCompatActivity {
                 getData.execute(categories[i].getName());
             }
         });
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
+
+            try {
+                ProviderInstaller.installIfNeeded(getApplicationContext());
+                SSLContext sslContext = SSLContext.getInstance("TLSv1.2");
+                sslContext.init(null, null, null);
+                SSLEngine engine = sslContext.createSSLEngine();
+            } catch (GooglePlayServicesRepairableException e) {
+                e.printStackTrace();
+            } catch (GooglePlayServicesNotAvailableException e) {
+                e.printStackTrace();
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            } catch (KeyManagementException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 
 
-    public class GetData extends AsyncTask<String, Void, String> {
+    public  class GetData extends AsyncTask<String, Void, ArrayList<Result>> {
         ProgressDialog dialog = new ProgressDialog(Categories.this);
 
         @Override
-        protected String doInBackground(String... urlStr) {
+        protected ArrayList<Result> doInBackground(String... urlStr) {
             HttpURLConnection httpURLConnection;
             BufferedReader reader;
             int responseCode;
+
             if (checkInternet()) {
 
-            try {
+                try {
+                    ArrayList<Result> results = new ArrayList<>();
+
                     URL url = new URL(urlStr[0]);
                     URLConnection urlConnection = url.openConnection();
                     httpURLConnection = (HttpURLConnection) urlConnection;
@@ -98,20 +124,53 @@ public class Categories extends AppCompatActivity {
                             while ((line = reader.readLine()) != null) {
                                 buffer.append(line);
                             }
+                            try {
 
-                            return buffer.toString();
+                                Parcel p = Parcel.obtain();
+                                JSONObject obj = new JSONObject(buffer.toString());
+                                if (obj.has(getString(R.string.result))) {
+                                    for (int i = 0; i < obj.getJSONArray(getString(R.string.result)).length(); i++) {
+                                        Result myObject = new Result(p);
+
+                                        JSONObject questionObj = obj.getJSONArray(getString(R.string.result)).getJSONObject(i);
+                                        String questionStr = questionObj.getString(getString(R.string.question_key));
+                                        String correctStr = questionObj.getString(getString(R.string.correct));
+                                        String category = questionObj.getString(getString(R.string.category));
+
+                                        JSONArray incorrect = questionObj.getJSONArray(getString(R.string.incorrect));
+                                        List<String> answers = new ArrayList<>();
+                                        for (int j = 0; j < incorrect.length(); j++) {
+                                            answers.add(incorrect.getString(j));
+                                        }
+                                        answers.add(correctStr);
+                                        myObject.setQuestion(questionStr);
+                                        myObject.setCorrectAnswer(correctStr);
+                                        myObject.setAnswers(answers);
+                                        myObject.setCategory(category);
+
+                                        results.add(myObject);
+                                    }
+                                    p.recycle();
+
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
+                            return results;
                         }
                     }
-                } catch(MalformedURLException e){
+                } catch (MalformedURLException e) {
                     e.printStackTrace();
-                } catch(IOException e){
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
 
 
-                return null;
-            }
+            return null;
+        }
 
 
         @Override
@@ -125,56 +184,27 @@ public class Categories extends AppCompatActivity {
 
 
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(ArrayList<Result> results) {
             dialog.dismiss();
 
-            if (result == null) {
+            if (results == null) {
                 Toast.makeText(Categories.this, getString(R.string.no_internet), Toast.LENGTH_LONG).show();
             } else {
-                ArrayList<Result> results = new ArrayList<>();
-                Parcel p = Parcel.obtain();
-
-                try {
 
 
-                    JSONObject obj = new JSONObject(result);
-                    if (obj.has(getString(R.string.result))) {
-                        for(int i=0;i<obj.getJSONArray(getString(R.string.result)).length();i++)
-                        {                    Result myObject = new Result(p);
-
-                            JSONObject questionObj = obj.getJSONArray(getString(R.string.result)).getJSONObject(i);
-                            String questionStr = questionObj.getString(getString(R.string.question_key));
-                            String correctStr = questionObj.getString(getString(R.string.correct));
-                            String category = questionObj.getString(getString(R.string.category));
-
-                            JSONArray incorrect = questionObj.getJSONArray(getString(R.string.incorrect));
-                            List<String> answers = new ArrayList<>();
-                            for (int j = 0; j < incorrect.length(); j++) {
-                                answers.add(incorrect.getString(j));
-                            }
-                            answers.add(correctStr);
-                            myObject.setQuestion(questionStr);
-                            myObject.setCorrectAnswer(correctStr);
-                            myObject.settAnswers(answers);
-                            myObject.setCategory(category);
-
-                            results.add(myObject);
-                        }
+                if (results.size() > 0) {
 
 
-                    }
-
-                    Intent intent = new Intent(Categories.this, Questins_Activty.class);
-                    intent.putParcelableArrayListExtra("hhhh", results);
+                    Intent intent = new Intent(Categories.this, Questions_Activity.class);
+                    intent.putParcelableArrayListExtra(getString(R.string.result), results);
                     startActivity(intent);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
 
+                }
             }
 
         }
     }
+
     public boolean checkInternet() {
         try {
             int timeoutMs = 1500;
@@ -185,6 +215,8 @@ public class Categories extends AppCompatActivity {
             sock.close();
 
             return true;
-        } catch (IOException e) { return false; }
+        } catch (IOException e) {
+            return false;
+        }
     }
 }

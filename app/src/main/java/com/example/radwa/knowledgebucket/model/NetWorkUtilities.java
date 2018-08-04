@@ -7,5 +7,6 @@ public class NetWorkUtilities {
     public static String GENERAL_KNOWLDGE_QUESTIONS="https://opentdb.com/api.php?amount=15&category=9&type=multiple";
     public static String HISTORY_QUESTIONS="https://opentdb.com/api.php?amount=15&category=23&type=multiple";
     public static String SPORTS_QUESTIONS="https://opentdb.com/api.php?amount=15&category=21&type=multiple";
+    public static String FACEBOOK_DEVELOPER="https://developers.facebook.com";
 
 }
