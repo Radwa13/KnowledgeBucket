@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1074987360195",
+    "firebase_url": "https://knowldge-bucket.firebaseio.com",
+    "project_id": "knowldge-bucket",
+    "storage_bucket": "knowldge-bucket.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1074987360195:android:da83f5c0d039cb29",
+        "android_client_info": {
+          "package_name": "com.example.radwa.knowledgebucket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1074987360195-1jjq9t10c99m2pvgn7ltb6ngahegup79.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.radwa.knowledgebucket",
+            "certificate_hash": "555bcfef3881edad55abda504df077a65382fe39"
+          }
+        },
+        {
+          "client_id": "1074987360195-1rkoncnofbqbnu9nhc84p3fgebbstg8l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_DJOBcENC14o241-YyYHNh4wKhWY88RY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1074987360195-1rkoncnofbqbnu9nhc84p3fgebbstg8l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
