@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 
 android {
     signingConfigs {
         config {
             keyAlias 'key0'
             keyPassword 'knowledge'
-            storeFile file('/home/radwa/Documents/KnowledgeBucket/key.jks')
             storePassword 'knowledge'
+            storeFile file("$rootDir/keystore/key.jks")
         }
     }
     compileSdkVersion 27
@@ -21,8 +22,6 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
         }
     }
@@ -38,7 +37,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation 'com.google.firebase:firebase-database:16.0.1'
     implementation 'com.firebase:firebase-jobdispatcher:0.5.2'
-    implementation 'com.google.firebase:firebase-crash:16.0.1'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.4'
     implementation 'com.facebook.android:facebook-share:4.34.0'
     implementation 'com.jakewharton:butterknife:8.8.1'
     implementation 'com.android.support:support-vector-drawable:27.1.1'

@@ -49,5 +49,6 @@ public class GameOver extends AppCompatActivity {
     public void submit(){
         Intent intent=new Intent(GameOver.this,Categories.class);
         startActivity(intent);
+        finish();
     }
 }

@@ -8,27 +8,79 @@
     android:background="@drawable/pattern_h"
     tools:context=".Questions_Activity">
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:layout_height="wrap_content">
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="10"
+    android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/timer"
-            style="@style/FontBoldTheme"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/heart1"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:contentDescription="@string/attemps_key"
+        app:layout_constraintBottom_toBottomOf="@+id/heart2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/heart" />
+
+    <ImageView
+        android:id="@+id/heart2"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_weight="1"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/attemps_key"
+        app:layout_constraintStart_toEndOf="@+id/heart1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/heart" />
+
+    <ImageView
+        android:id="@+id/heart3"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="8dp"
+        android:layout_weight="1"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/attemps_key"
+        app:layout_constraintBottom_toBottomOf="@+id/heart2"
+        app:layout_constraintStart_toEndOf="@+id/heart2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/heart" />
+
+    <TextView
+        android:id="@+id/timer"
+        style="@style/FontBoldTheme"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_gravity="right"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="7"
+        android:gravity="right"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</LinearLayout>
 
         <TextView
             android:id="@+id/question"
             style="@style/FontBoldTheme"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
@@ -40,188 +92,105 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/timer" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="36dp"
-            android:contentDescription="@string/answerA"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/question"
-            app:srcCompat="@drawable/a" />
-
-        <Button
-            android:id="@+id/answerA"
-            style="@style/FontRegularTheme"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="32dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="36dp"
-
-            android:background="@drawable/answer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/question" />
-
-        <Button
-            android:id="@+id/answerB"
-            style="@style/FontRegularTheme"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="32dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/answer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
-            app:layout_constraintTop_toBottomOf="@+id/answerA" />
-
-        <Button
-            android:id="@+id/answerC"
-            style="@style/FontRegularTheme"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="32dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/answer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView5"
-            app:layout_constraintTop_toBottomOf="@+id/answerB" />
-
-        <Button
-            android:id="@+id/answerD"
-            style="@style/FontRegularTheme"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="32dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/answer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
-            app:layout_constraintTop_toBottomOf="@+id/answerC" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:contentDescription="@string/answerB"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2"
-            app:srcCompat="@drawable/b" />
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:contentDescription="@string/answerC"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView5"
-            app:srcCompat="@drawable/d" />
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:contentDescription="@string/answerD"
-            android:src="@drawable/c"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
-        <TextView
-            android:id="@+id/textView3"
-            style="@style/FontBoldTheme"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/score"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/answerD" />
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="2">
 
-        <TextView
-            android:id="@+id/score"
-            style="@style/FontBoldTheme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            app:layout_constraintStart_toEndOf="@+id/textView3"
-            app:layout_constraintTop_toTopOf="@+id/textView3" />
+            <Button
+                android:id="@+id/answerA"
+                style="@style/FontRegularTheme"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/answer_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/question" />
 
+            <Button
+                android:id="@+id/answerB"
+                style="@style/FontRegularTheme"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/answer_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/answerA" />
 
-        <ImageView
-            android:id="@+id/heart1"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:contentDescription="@string/attemps_key"
-            app:layout_constraintBottom_toBottomOf="@+id/heart2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/heart" />
+        </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/heart2"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toEndOf="@+id/heart1"
-            android:contentDescription="@string/attemps_key"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/heart" />
+    <Button
+        android:id="@+id/answerC"
+        style="@style/FontRegularTheme"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/answer_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answerB" />
 
-        <ImageView
-            android:id="@+id/heart3"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/heart2"
-            app:layout_constraintStart_toEndOf="@+id/heart2"
-            android:contentDescription="@string/attemps_key"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/heart" />
+    <Button
+        android:id="@+id/answerD"
+        style="@style/FontRegularTheme"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/answer_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answerC" />
+
+</LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <TextView
+        android:id="@+id/textView3"
+        style="@style/FontBoldTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/score"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answerD"
+        android:layout_marginLeft="16dp" />
+
+    <TextView
+        android:id="@+id/score"
+        style="@style/FontBoldTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+</LinearLayout>
+
 
         <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             ads:adSize="BANNER"
             ads:adUnitId="@string/app_unit_id"
             ads:layout_constraintBottom_toBottomOf="parent"
@@ -231,5 +200,5 @@
 
         </com.google.android.gms.ads.AdView>
 
-    </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
 </ScrollView>

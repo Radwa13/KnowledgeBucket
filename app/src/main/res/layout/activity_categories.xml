@@ -47,9 +47,12 @@
         android:columnWidth="150dp"
         android:horizontalSpacing="10dp"
         android:numColumns="2"
+        android:isScrollContainer="true"
         android:paddingTop="10dp"
         android:stretchMode="spacingWidthUniform"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:verticalSpacing="25dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:scrollbars="vertical"
+         />
 
 </android.support.design.widget.CoordinatorLayout>

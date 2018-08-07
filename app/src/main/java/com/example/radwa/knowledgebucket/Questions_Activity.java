@@ -62,7 +62,8 @@ public class Questions_Activity extends AppCompatActivity {
     boolean paused = false;
     long timeDifference;
     CountDownTimer countDownTimer;
-    long mMillisUntilFinished;
+    long mMillisUntilFinished = 60000;
+    boolean clicked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +73,10 @@ public class Questions_Activity extends AppCompatActivity {
         index = 0;
         scoreTV.setText(String.valueOf(score));
         paused = false;
-
-
         if (savedInstanceState != null) {
             if (savedInstanceState.containsKey(getString(R.string.timer_key))) {
-                startCount(savedInstanceState.getLong(getString(R.string.timer_key)));
+
+                mMillisUntilFinished = savedInstanceState.getLong(getString(R.string.timer_key));
             }
 
             if (savedInstanceState.containsKey(getString(R.string.result))) {
@@ -85,19 +85,16 @@ public class Questions_Activity extends AppCompatActivity {
             if (savedInstanceState.containsKey(getString(R.string.index_key))) {
                 index = savedInstanceState.getInt(getString(R.string.index_key));
             }
-            attachDtaToUi();
+            attachDtaToUi(mMillisUntilFinished);
 
-            if (savedInstanceState.containsKey(getString(R.string.btnKey))) {
-                Button button = findViewById((savedInstanceState.getInt(getString(R.string.btnKey))));
-                buttonClicked(savedInstanceState.getInt(getString(R.string.btnKey)), button);
 
-            }
             if (savedInstanceState.containsKey(getString(R.string.score_key))) {
                 scoreTV.setText(String.valueOf(savedInstanceState.getInt(getString(R.string.score_key))));
             }
 
 
             if (savedInstanceState.containsKey(getString(R.string.attemps_key))) {
+                attempts=savedInstanceState.getInt(getString(R.string.attemps_key));
                 if (attempts == 2) {
                     heart3.setVisibility(View.INVISIBLE);
                 }
@@ -105,20 +102,31 @@ public class Questions_Activity extends AppCompatActivity {
                 if (attempts == 1) {
                     heart3.setVisibility(View.INVISIBLE);
                     heart2.setVisibility(View.INVISIBLE);
+
                 }
 
 
             }
+            if (savedInstanceState.containsKey(getString(R.string.btnKey)) && savedInstanceState.containsKey(getString(R.string.answer_key))) {
 
+                Button button = findViewById((savedInstanceState.getInt(getString(R.string.btnKey))));
+                answer=savedInstanceState.getBoolean(getString(R.string.answer_key));
+                if (answer)
+                    button.setBackgroundResource(R.drawable.right_bg);
+                else
+                    button.setBackgroundResource(R.drawable.wrong_bg);
+                showNext();
+
+            }
         } else {
-            startCount(60000);
 
             if (getIntent() != null && getIntent().hasExtra(getString(R.string.result))) {
                 results = getIntent().getParcelableArrayListExtra(getString(R.string.result));
+                Collections.shuffle(results.get(index).getAnswers());
 
             }
             if (results.size() > 0)
-                attachDtaToUi();
+                attachDtaToUi(60000);
 
 
         }
@@ -180,16 +188,16 @@ public class Questions_Activity extends AppCompatActivity {
             if (index < results.size()) {
                 index++;
             }
-            attachDtaToUi();
+            attachDtaToUi(60000);
 
         }
     }
 
-    private void attachDtaToUi() {
+    private void attachDtaToUi(long startAt) {
+        if(countDownTimer!=null)
         countDownTimer.cancel();
-        startCount(60000);
-        Collections.shuffle(results.get(index).getAnswers());
-
+        startCount(startAt);
+        clicked = false;
         questionTv.setText((Html.fromHtml(results.get(index).getQuestion()).toString()));
         answerA.setText(Html.fromHtml(results.get(index).getAnswers().get(0)).toString());
         answerB.setText(Html.fromHtml(results.get(index).getAnswers().get(1)).toString());
@@ -203,10 +211,10 @@ public class Questions_Activity extends AppCompatActivity {
         answerB.setClickable(true);
         answerC.setClickable(true);
         answerD.setClickable(true);
-        answerA.setBackgroundResource(R.drawable.answer);
-        answerB.setBackgroundResource(R.drawable.answer);
-        answerC.setBackgroundResource(R.drawable.answer);
-        answerD.setBackgroundResource(R.drawable.answer);
+        answerA.setBackgroundResource(R.drawable.answer_bg);
+        answerB.setBackgroundResource(R.drawable.answer_bg);
+        answerC.setBackgroundResource(R.drawable.answer_bg);
+        answerD.setBackgroundResource(R.drawable.answer_bg);
 
 
     }
@@ -217,12 +225,12 @@ public class Questions_Activity extends AppCompatActivity {
         answerB.setClickable(false);
         answerC.setClickable(false);
         answerD.setClickable(false);
-
+        clicked = true;
 
         if (button.getText().equals(results.get(index).getCorrectAnswer())) {
             setRight();
-            button.setBackgroundResource(R.drawable.right);
-
+            button.setBackgroundResource(R.drawable.right_bg);
+            answer = true;
             if (index < results.size()) {
                 showNext();
             } else {
@@ -231,9 +239,11 @@ public class Questions_Activity extends AppCompatActivity {
 
 
         } else {
+            answer = false;
+
             setAtemps();
             attempts--;
-            button.setBackgroundResource(R.drawable.wrong);
+            button.setBackgroundResource(R.drawable.wrong_bg);
             setWrong();
 
         }
@@ -323,16 +333,17 @@ public class Questions_Activity extends AppCompatActivity {
         intent.putExtra(getString(R.string.high_sore), high_score);
 
         startActivity(intent);
-
+        finish();
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        if (btnId != 0)
+        if (btnId != 0&&clicked)
             outState.putInt(getString(R.string.btnKey), btnId);
         outState.putLong(getString(R.string.timer_key), mMillisUntilFinished);
-        outState.putBoolean(getString(R.string.answer_key), answer);
+        if(clicked)
+            outState.putBoolean(getString(R.string.answer_key), answer);
         outState.putInt(getString(R.string.score_key), score);
         outState.putInt(getString(R.string.index_key), index);
         outState.putInt(getString(R.string.attemps_key), attempts);
@@ -359,6 +370,9 @@ public class Questions_Activity extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
 
                 mMillisUntilFinished = millisUntilFinished;
+
+                if (millisUntilFinished < 10000)
+                    mTextView.setTextColor(getResources().getColor(R.color.wrongColor));
                 mTextView.setText(String.valueOf(millisUntilFinished / 1000));
             }
 

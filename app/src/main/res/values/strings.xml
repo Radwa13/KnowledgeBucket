@@ -28,5 +28,8 @@
     <string name="index_key">index key</string>
     <string name="game_over">Game Over</string>
     <string name="attemps_key">attempes Over</string>
+    <string name="facebook_key">498389497258929</string>
+
+
     <string name="app_unit_id"> ca-app-pub-3940256099942544/6300978111</string>
 </resources>

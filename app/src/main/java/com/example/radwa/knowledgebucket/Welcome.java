@@ -49,7 +49,7 @@ public class Welcome extends AppCompatActivity {
     }
 
     private void showSharing() {
-        FacebookSdk.setApplicationId("498389497258929");
+        FacebookSdk.setApplicationId(getString(R.string.facebook_key));
         FacebookSdk.sdkInitialize(this);
 
         shareDialog = new ShareDialog(this);
@@ -67,7 +67,7 @@ public class Welcome extends AppCompatActivity {
     private void scheduleJob() {
 
         mDispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(this));
-        final int windowStart =60; // after minuet
+        final int windowStart =10; // after 10 seconds
         final int windowEnd = (int)TimeUnit.HOURS.toSeconds(24); // Every 24 hours
 
 

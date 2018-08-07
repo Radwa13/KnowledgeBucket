@@ -23,7 +23,10 @@ public class FactsAppWidget extends AppWidgetProvider {
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.facts_app_widget);
         views.setTextViewText(R.id.appwidget_text, fact);
+        views.setImageViewResource(R.id.imageView, R.drawable.widget_ico);
         Intent shareIntent = new Intent(context, Welcome.class);
+        shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
         shareIntent.putExtra(FACTS_KEY,"");
         PendingIntent sharePendingIntent = PendingIntent.getActivity(context, 0, shareIntent, 0);
         views.setOnClickPendingIntent(R.id.share, sharePendingIntent);

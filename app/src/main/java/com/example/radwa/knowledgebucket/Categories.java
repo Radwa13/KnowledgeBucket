@@ -47,6 +47,7 @@ import butterknife.ButterKnife;
 public class Categories extends AppCompatActivity {
     @BindView(R.id.gridview)
     GridView gridView;
+    GetData getData;
 
     @SuppressWarnings("unused")
     @Override
@@ -54,7 +55,7 @@ public class Categories extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
         ButterKnife.bind(this);
-        final Category[] categories = new Category[6];
+        final Category[] categories = new Category[7];
 
         categories[0] = new Category(R.drawable.history, NetWorkUtilities.HISTORY_QUESTIONS);
         categories[1] = new Category(R.drawable.sports, NetWorkUtilities.SPORTS_QUESTIONS);
@@ -62,15 +63,20 @@ public class Categories extends AppCompatActivity {
         categories[3] = new Category(R.drawable.art, NetWorkUtilities.ART_QUESTIONS);
         categories[4] = new Category(R.drawable.math, NetWorkUtilities.MATH_QUESTIONS);
         categories[5] = new Category(R.drawable.geography, NetWorkUtilities.GEOGRAPHY_QUESTIONS);
-      CategoriesAdapter categoriesAdapter = new CategoriesAdapter(this, categories);
+        //dummy row to handle gridview last row cut
+        categories[6] = new Category(0, "");
+
+        CategoriesAdapter categoriesAdapter = new CategoriesAdapter(this, categories);
 
         gridView.setAdapter(categoriesAdapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                GetData getData = new GetData();
-                getData.execute(categories[i].getName());
+                if (!categories[i].getName().equals("") && getData == null) {
+                    getData = new GetData();
+                    getData.execute(categories[i].getName());
+                }
             }
         });
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
@@ -94,8 +100,8 @@ public class Categories extends AppCompatActivity {
     }
 
 
-    public  class GetData extends AsyncTask<String, Void, ArrayList<Result>> {
-        ProgressDialog dialog = new ProgressDialog(Categories.this);
+    public class GetData extends AsyncTask<String, Void, ArrayList<Result>> {
+        ProgressDialog dialog;
 
         @Override
         protected ArrayList<Result> doInBackground(String... urlStr) {
@@ -176,17 +182,19 @@ public class Categories extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             //showProgressDialog
-            dialog = new ProgressDialog(Categories.this);
-            dialog.setMessage("Loading........");
-            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.show();
+            if (dialog == null) {
+                dialog = new ProgressDialog(Categories.this);
+                dialog.setMessage("Loading........");
+                dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                dialog.show();
+            }
         }
 
 
         @Override
         protected void onPostExecute(ArrayList<Result> results) {
             dialog.dismiss();
-
+            getData = null;
             if (results == null) {
                 Toast.makeText(Categories.this, getString(R.string.no_internet), Toast.LENGTH_LONG).show();
             } else {
@@ -217,6 +225,22 @@ public class Categories extends AppCompatActivity {
             return true;
         } catch (IOException e) {
             return false;
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        getData = null;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (getData != null) {
+            if (getData.getStatus().equals(AsyncTask.Status.RUNNING))
+
+                getData.cancel(true);
         }
     }
 }

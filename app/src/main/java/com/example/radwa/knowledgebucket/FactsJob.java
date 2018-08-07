@@ -38,7 +38,6 @@ public class FactsJob extends JobService {
                 if(dataSnapshot.getValue()!=null){
                 String fact=dataSnapshot.getValue().toString();
                 SharedPreferencesMethods.savePreferencesString(getApplicationContext(),getString(R.string.facts_key),fact);
-                Log.d("DDSDDS",fact)  ;
                 Intent intent = new Intent(getApplicationContext(), FactsAppWidget.class);
                 intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
                 int[] ids = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), FactsAppWidget.class));

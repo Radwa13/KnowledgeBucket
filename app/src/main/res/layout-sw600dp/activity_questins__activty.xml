@@ -65,31 +65,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/heart2" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="28dp"
-            android:contentDescription="@string/answerA"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/question"
-            app:srcCompat="@drawable/a" />
-
         <Button
             android:id="@+id/answerA"
             style="@style/FontRegularTheme"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="50dp"
-            android:background="@drawable/answer"
+            android:background="@drawable/answer_bg"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/question" />
 
         <Button
@@ -98,13 +86,14 @@
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
-            android:background="@drawable/answer"
+            android:background="@drawable/answer_bg"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/answerA" />
 
         <Button
@@ -113,13 +102,13 @@
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
-            android:background="@drawable/answer"
+            android:background="@drawable/answer_bg"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView5"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/answerB" />
 
         <Button
@@ -128,54 +117,14 @@
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
-            android:background="@drawable/answer"
+            android:background="@drawable/answer_bg"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/answerC" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:contentDescription="@string/answerB"
-            app:layout_constraintBottom_toBottomOf="@+id/answerB"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/answerB"
-            app:layout_constraintVertical_bias="0.666"
-            app:srcCompat="@drawable/b" />
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:contentDescription="@string/answerC"
-            app:layout_constraintBottom_toBottomOf="@+id/answerD"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/answerD"
-            app:srcCompat="@drawable/d" />
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:contentDescription="@string/answerD"
-            app:layout_constraintBottom_toBottomOf="@+id/answerC"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/answerC"
-            app:srcCompat="@drawable/c" />
 
         <TextView
             android:id="@+id/textView3"

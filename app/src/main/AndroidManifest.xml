@@ -36,7 +36,7 @@
             android:authorities="com.facebook.app.FacebookContentProvider498389497258929"
             android:exported="true" />
 
-        <activity android:name=".Welcome" >
+        <activity android:name=".Welcome"   >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -58,13 +58,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Categories" />
-        <activity android:name=".Questions_Activity" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
+        <activity android:name=".Questions_Activity" />
         <activity android:name=".GameOver"/>
 
         <meta-data
